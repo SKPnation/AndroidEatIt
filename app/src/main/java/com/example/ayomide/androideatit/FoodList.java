@@ -17,6 +17,7 @@ import com.example.ayomide.androideatit.Common.Common;
 import com.example.ayomide.androideatit.Database.Database;
 import com.example.ayomide.androideatit.Interface.ItemClickListener;
 import com.example.ayomide.androideatit.Model.Food;
+import com.example.ayomide.androideatit.Utils.UniversalImageLoader;
 import com.example.ayomide.androideatit.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -168,7 +169,13 @@ public class FoodList extends AppCompatActivity {
             protected void populateViewHolder(final FoodViewHolder viewHolder, final Food model, final int position) {
 
                 viewHolder.food_name.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
+
+                try {
+                    UniversalImageLoader.setImage(model.getImage(), viewHolder.food_image, null, "");
+                    Log.d("Photo: ", model.getImage() );
+                }catch (Exception e){
+                    //...
+                }
 
                 if (localDB.isFavorite( adapter.getRef( position ).getKey() ))
                     viewHolder.fav_image.setImageResource( R.drawable.ic_favorite_black_24dp );
@@ -240,7 +247,12 @@ public class FoodList extends AppCompatActivity {
 
                 viewHolder.food_name.setText(model.getName());
                 viewHolder.food_price.setText( String.format( "N %s", model.getPrice() ) );
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
+                try {
+                    UniversalImageLoader.setImage(model.getImage(), viewHolder.food_image, null, "");
+                    Log.d("Photo: ", model.getImage() );
+                }catch (Exception e){
+                    //...
+                }
 
                 viewHolder.btn_share.setOnClickListener( new View.OnClickListener() {
                     @Override

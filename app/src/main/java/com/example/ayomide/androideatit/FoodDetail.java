@@ -6,6 +6,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.example.ayomide.androideatit.Database.Database;
 import com.example.ayomide.androideatit.Model.Food;
 import com.example.ayomide.androideatit.Model.Order;
 import com.example.ayomide.androideatit.Model.Rating;
+import com.example.ayomide.androideatit.Utils.UniversalImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -139,7 +141,13 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentFood = dataSnapshot.getValue(Food.class);
 
-                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
+                try {
+                    UniversalImageLoader.setImage(currentFood.getImage(), food_image, null, "");
+                    Log.d("Photo: ", currentFood.getImage() );
+                }catch (Exception e){
+                    //...
+                }
+
 
                 food_name.setText(currentFood.getName());
 
@@ -150,7 +158,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                //..
             }
         });
     }
@@ -185,7 +193,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
 
     @Override
     public void onNegativeButtonClicked() {
-
+        //..
     }
 
     @Override

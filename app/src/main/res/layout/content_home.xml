@@ -27,7 +27,8 @@
             android:id="@+id/recycler_menu"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/food_item"/>
 
     </LinearLayout>
 

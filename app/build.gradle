@@ -51,15 +51,21 @@ dependencies {
     implementation 'com.github.rey5137:material:1.2.5'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
-    implementation 'com.android.support:cardview-v7:26.+'
-    implementation 'com.android.support:recyclerview-v7:26.+'
+    //CardView
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    //RecyclerView
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    //Picasso image loader
     implementation 'com.squareup.picasso:picasso:2.5.0'
+    //firebase UI
     implementation 'com.firebaseui:firebase-ui-database:1.2.0'
 
+    //Retrofit for http request
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-     implementation 'com.github.Flutterwave:rave-android:1.0.49.1'
+    //Universal Image loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }
 apply plugin: 'com.google.gms.google-services'

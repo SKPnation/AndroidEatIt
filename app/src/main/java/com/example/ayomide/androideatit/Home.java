@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,6 +33,7 @@ import com.example.ayomide.androideatit.Interface.ItemClickListener;
 import com.example.ayomide.androideatit.Model.Banner;
 import com.example.ayomide.androideatit.Model.Category;
 import com.example.ayomide.androideatit.Model.Token;
+import com.example.ayomide.androideatit.Utils.UniversalImageLoader;
 import com.example.ayomide.androideatit.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -86,7 +88,14 @@ public class Home extends AppCompatActivity
             protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
 
                 viewHolder.tvMenuName.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.imageView);
+
+                try {
+                    UniversalImageLoader.setImage(model.getImage(), viewHolder.imageView, null, "");
+                    Log.d("Photo: ", model.getImage() );
+                }catch (Exception e){
+                    //...
+                }
+
                 final Category clickItem = model;
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
